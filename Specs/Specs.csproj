@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CRUD\EmptyTitle.cs" />
-    <Compile Include="CRUD\InvalidStoryReceived.cs" />
+    <Compile Include="CRUD\StoryApplicationValidations.cs" />
     <Compile Include="CRUD\ValidStoryReceived.cs" />
     <Compile Include="Display\VisitHomepage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
