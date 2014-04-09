@@ -4,6 +4,7 @@ namespace Funny.Models {
 
     public enum StoryApplicationStatus {
         Pending,
+        Invalid,
         Accepted,
         Denied
     }

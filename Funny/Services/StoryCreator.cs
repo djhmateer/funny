@@ -1,4 +1,5 @@
 ﻿using Funny.Models;
+using System;
 
 namespace Funny.Services {
     public class StoryCreatorResult {
@@ -10,34 +11,48 @@ namespace Funny.Services {
     }
 
     public class StoryCreator {
-        public StoryApplication ValidateApplication(StoryApplication app) {
-            // do some stuff
+        StoryApplication CurrentApplication;
 
-            if (app.Title.Length < 4) {
-                app.IsValid = false;
-                app.Status = StoryApplicationStatus.Denied;
-                app.Message = "Invalid - Title needs to be 4 or more characters";
-            } else {
-                app.IsValid = true;
-            }
-
-            return app;
+        bool TitleNotPresent() {
+            return String.IsNullOrWhiteSpace(CurrentApplication.Title);
         }
 
+        bool TitleIsInvalid() {
+            return CurrentApplication.Title.Length < 4;
+        }
+
+        public StoryCreatorResult InvalidApplication(string reason) {
+            var result = new StoryCreatorResult();
+            CurrentApplication.Status = StoryApplicationStatus.Invalid;
+            //TODO: refactor isvalid out
+            CurrentApplication.IsValid = false;
+            result.StoryApplication = CurrentApplication;
+            result.StoryApplication.Message = reason;
+            return result;
+        }
+
+        // Part 2
+        public Story AcceptApplication() {
+            Story story = new Story();
+            return story;
+        }
+
+        // Part 1
         public StoryCreatorResult CreateNewStory(StoryApplication app) {
             var result = new StoryCreatorResult();
 
-            // validation
-            result.StoryApplication = ValidateApplication(app);
+            app.IsValid = true;
+            CurrentApplication = app;
+            result.StoryApplication = app;
+            result.StoryApplication.Message = "Successfully created a new story!";
 
-            if (result.StoryApplication.IsValid) {
-                // Successful creation of story!
-                result.NewStory = new Story();
-                result.StoryApplication.Message = "Successfully created a new story!";
-                result.StoryApplication.Status = StoryApplicationStatus.Accepted;
-                //result.StoryApplication = app;
-            }
-            
+            if (TitleNotPresent())
+                return InvalidApplication("Title is missing");
+
+            if (TitleIsInvalid())
+                return InvalidApplication("Title is invalid - needs to be 4 or more characters");
+
+            result.NewStory = AcceptApplication();
             return result;
         }
     }
