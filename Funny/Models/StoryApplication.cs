@@ -16,6 +16,7 @@ namespace Funny.Models {
         public bool IsValid { get; set; }
         public StoryApplicationStatus Status { get; set; }
         public string Message { get; set; }
+        public int Rating { get; set; }
 
         public StoryApplication(string title, string content, StoryType storyType) {
             this.Title = title;

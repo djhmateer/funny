@@ -1,4 +1,5 @@
-﻿using Funny.Models;
+﻿using Funny.DB;
+using Funny.Models;
 using System;
 
 namespace Funny.Services {
@@ -32,8 +33,19 @@ namespace Funny.Services {
         }
 
         // Part 2
-        public Story AcceptApplication() {
+        public Story ApplicationAccepted() {
             Story story = new Story();
+            using (var session = new Session()) {
+                // Create Story from CurrentStory
+                story.Title = CurrentApplication.Title;
+                story.Content = CurrentApplication.Content;
+                story.Rating = CurrentApplication.Rating;
+                story.CreatedAt = DateTime.Now;
+                story.StoryType = CurrentApplication.StoryType;
+
+                session.Stories.Add(story);
+                session.SaveChanges();
+            }
             return story;
         }
 
@@ -52,7 +64,8 @@ namespace Funny.Services {
             if (TitleIsInvalid())
                 return InvalidApplication("Title is invalid - needs to be 4 or more characters");
 
-            result.NewStory = AcceptApplication();
+            // Accept the StoryApplication
+            result.NewStory = ApplicationAccepted();
             return result;
         }
     }

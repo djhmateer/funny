@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Funny.Models {
     public enum StoryType {
@@ -9,13 +11,23 @@ namespace Funny.Models {
         AnimatedGIF
     }
 
+    public class Vote {
+        public int ID { get; set; }
+        public int RatingChange { get; set; }
+        public string IPAddress { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public virtual Story Story { get; set; }
+    }
+
     public class Story {
         public int ID { get; set; }
+        [MaxLength(255)]
         public string Title { get; set; }
         public string Content { get; set; }
         public int Rating { get; set; }
         public DateTime CreatedAt { get; set; }
         public StoryType StoryType { get; set; }
+        public ICollection<Vote> Votes { get; set; }
 
         public Story() {
             this.CreatedAt = DateTime.Now;
