@@ -23,6 +23,7 @@ namespace Funny.Models {
         public int ID { get; set; }
         [MaxLength(255)]
         public string Title { get; set; }
+        [MaxLength(2048)]
         public string Content { get; set; }
         public int Rating { get; set; }
         public DateTime CreatedAt { get; set; }

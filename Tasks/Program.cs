@@ -1,16 +1,13 @@
 ﻿using Funny.DB;
 using Funny.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tasks {
     class Program {
         static void Main(string[] args) {
             var session = new Session();
-            var story = new Story { Title = "Stick5" };
+            var story = new Story { Title = "Stick7" };
             session.Stories.Add(story);
 
             var vote = new Vote { Story=story, RatingChange = 1, CreatedAt = DateTime.Now };
