@@ -1,6 +1,7 @@
 ﻿using Funny.DB;
 using Funny.Models;
 using System;
+using System.Linq;
 
 namespace Funny.Services {
     public class StoryCreatorResult {
@@ -20,6 +21,14 @@ namespace Funny.Services {
 
         bool TitleIsInvalid() {
             return CurrentApplication.Title.Length < 4;
+        }
+
+        private bool TitleAlreadyExists() {
+            bool exists;
+            using (var session = new Session()) {
+                exists = session.Stories.FirstOrDefault(s => s.Title == CurrentApplication.Title) != null;
+            }
+            return exists;
         }
 
         public StoryCreatorResult InvalidApplication(string reason) {
@@ -64,9 +73,14 @@ namespace Funny.Services {
             if (TitleIsInvalid())
                 return InvalidApplication("Title is invalid - needs to be 4 or more characters");
 
+            if (TitleAlreadyExists())
+                return InvalidApplication("Title exists already in database");
+
             // Accept the StoryApplication
             result.NewStory = ApplicationAccepted();
             return result;
         }
+
+        
     }
 }

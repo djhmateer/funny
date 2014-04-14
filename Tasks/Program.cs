@@ -7,7 +7,7 @@ namespace Tasks {
     class Program {
         static void Main(string[] args) {
             var session = new Session();
-            var story = new Story { Title = "Stick7" };
+            var story = new Story { Title = "Stick8" };
             session.Stories.Add(story);
 
             var vote = new Vote { Story=story, RatingChange = 1, CreatedAt = DateTime.Now };
