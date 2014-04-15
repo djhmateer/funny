@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 namespace Funny.Models {
 
     public enum StoryApplicationStatus {
@@ -28,6 +27,10 @@ namespace Funny.Models {
             if (String.IsNullOrWhiteSpace(this.Title)
                || String.IsNullOrWhiteSpace(this.Content))
                 throw new InvalidOperationException("Can't have an empty Title or Content");
+        }
+
+        public bool IsAccepted() {
+            return this.Status == StoryApplicationStatus.Accepted;
         }
     }
 }

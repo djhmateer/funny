@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\Session.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Story.cs" />
     <Compile Include="Models\StoryApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

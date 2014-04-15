@@ -22,8 +22,10 @@ namespace Funny.Models {
     public class Story {
         public int ID { get; set; }
         [MaxLength(255)]
+        [Required]
         public string Title { get; set; }
         [MaxLength(2048)]
+        [Required]
         public string Content { get; set; }
         public int Rating { get; set; }
         public DateTime CreatedAt { get; set; }

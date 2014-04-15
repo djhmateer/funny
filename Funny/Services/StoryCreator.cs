@@ -43,8 +43,10 @@ namespace Funny.Services {
 
         // Part 2
         public Story ApplicationAccepted() {
-            Story story = new Story();
+            var story = new Story();
             using (var session = new Session()) {
+                CurrentApplication.Status = StoryApplicationStatus.Accepted;
+
                 // Create Story from CurrentStory
                 story.Title = CurrentApplication.Title;
                 story.Content = CurrentApplication.Content;

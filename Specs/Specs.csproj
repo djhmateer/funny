@@ -57,6 +57,7 @@
     <Compile Include="CRUD\ValidStoryReceived.cs" />
     <Compile Include="Display\VisitHomepage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
