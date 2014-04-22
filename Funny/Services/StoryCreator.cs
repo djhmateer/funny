@@ -34,15 +34,13 @@ namespace Funny.Services {
         public StoryCreatorResult InvalidApplication(string reason) {
             var result = new StoryCreatorResult();
             CurrentApplication.Status = StoryApplicationStatus.Invalid;
-            //TODO: refactor isvalid out
-            CurrentApplication.IsValid = false;
             result.StoryApplication = CurrentApplication;
             result.StoryApplication.Message = reason;
             return result;
         }
 
         // Part 2
-        public Story ApplicationAccepted() {
+        public Story AcceptApplication() {
             var story = new Story();
             using (var session = new Session()) {
                 CurrentApplication.Status = StoryApplicationStatus.Accepted;
@@ -64,7 +62,7 @@ namespace Funny.Services {
         public StoryCreatorResult CreateNewStory(StoryApplication app) {
             var result = new StoryCreatorResult();
 
-            app.IsValid = true;
+            //app.IsValid = true;
             CurrentApplication = app;
             result.StoryApplication = app;
             result.StoryApplication.Message = "Successfully created a new story!";
@@ -79,7 +77,7 @@ namespace Funny.Services {
                 return InvalidApplication("Title exists already in database");
 
             // Accept the StoryApplication
-            result.NewStory = ApplicationAccepted();
+            result.NewStory = AcceptApplication();
             return result;
         }
 

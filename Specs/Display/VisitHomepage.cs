@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 
 namespace Specs.Display {
-    [Trait("Anon User visits the Homepage", "")]
+    [Trait("Homepage","User visits")]
     public class VisitHomepage {
         [Fact(DisplayName="Show list of all Stories in rank order")]
         public void ShowListOfStoriesInRankOrder() {
@@ -18,7 +18,7 @@ namespace Specs.Display {
         }
     }
 
-    [Trait("Anon User votes for a Story", "")]
+    [Trait("Homepage","User votes for a Story")]
     public class VoteForAStory {
         [Fact(DisplayName = "Rating is incremented by 1")]
         public void RatingIsIncrementedBy1() {
@@ -34,7 +34,7 @@ namespace Specs.Display {
         }
     }
 
-    [Trait("Anon User changes sort order to date", "")]
+    [Trait("Homepage","User changes sort order to date")]
     public class ChangeSortOrderToDate {
         [Fact(DisplayName = "Story sort order changed to date")]
         public void StorySortOrder() {
@@ -46,7 +46,7 @@ namespace Specs.Display {
         }
     }
 
-    [Trait("Anon User changes sort order to rank", "")]
+    [Trait("Homepage","User changes sort order to rank")]
     public class ChangeSortOrderToRank {
         [Fact(DisplayName = "Story sort order changed to rank")]
         public void StorySortOrder() {
