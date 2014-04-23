@@ -1,74 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-//using System.Data;
+﻿using Funny.DB;
+using Funny.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Funny.Models;
-using Funny.DB;
+using Funny.Services;
 
-namespace Web.Controllers
-{
-    public class StoryController : Controller
-    {
+namespace Web.Controllers {
+    public class StoryController : Controller {
         private Session db = new Session();
 
-        // GET: /Story/
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             return View(db.Stories.ToList());
         }
 
-        // GET: /Story/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
+        public ActionResult Details(int? id) {
+            if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Story story = db.Stories.Find(id);
-            if (story == null)
-            {
+            if (story == null) {
                 return HttpNotFound();
             }
             return View(story);
         }
 
-        // GET: /Story/Create
-        public ActionResult Create()
-        {
+        public ActionResult Create() {
             return View();
         }
 
-        // POST: /Story/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Title,Content,Rating,CreatedAt,StoryType")] Story story)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Stories.Add(story);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+        public ActionResult Create([Bind(Include = "ID,Title,Content,Rating,CreatedAt,StoryType")] Story story) {
+            if (ModelState.IsValid) {
+                // new up the StoryApplication
+                var app = new StoryApplication(title: story.Title, content: story.Content, storyType: story.StoryType);
+
+                // call our StoryCreator service
+                var sc = new StoryCreator();
+                StoryCreatorResult result = sc.CreateNewStory(app);
+
+                //db.Stories.Add(story);
+                //db.SaveChanges();
+                if (result.StoryApplication.IsValid())
+                    return RedirectToAction("Index");
             }
 
             return View(story);
         }
 
         // GET: /Story/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
+        public ActionResult Edit(int? id) {
+            if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Story story = db.Stories.Find(id);
-            if (story == null)
-            {
+            if (story == null) {
                 return HttpNotFound();
             }
             return View(story);
@@ -79,10 +66,8 @@ namespace Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Title,Content,Rating,CreatedAt,StoryType")] Story story)
-        {
-            if (ModelState.IsValid)
-            {
+        public ActionResult Edit([Bind(Include = "ID,Title,Content,Rating,CreatedAt,StoryType")] Story story) {
+            if (ModelState.IsValid) {
                 db.Entry(story).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -91,15 +76,12 @@ namespace Web.Controllers
         }
 
         // GET: /Story/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
+        public ActionResult Delete(int? id) {
+            if (id == null) {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Story story = db.Stories.Find(id);
-            if (story == null)
-            {
+            if (story == null) {
                 return HttpNotFound();
             }
             return View(story);
@@ -108,18 +90,15 @@ namespace Web.Controllers
         // POST: /Story/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
+        public ActionResult DeleteConfirmed(int id) {
             Story story = db.Stories.Find(id);
             db.Stories.Remove(story);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing) {
                 db.Dispose();
             }
             base.Dispose(disposing);
