@@ -8,6 +8,8 @@ using Funny.Services;
 
 namespace Web.Controllers {
     public class StoryController : Controller {
+        // private field initialisation without need for constructor
+        // happens before this/base constructor
         private Session db = new Session();
 
         public ActionResult Index() {
@@ -31,22 +33,18 @@ namespace Web.Controllers {
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,Content,Rating,CreatedAt,StoryType")] Story story) {
+        public ActionResult Create(StoryApplication app) {
             if (ModelState.IsValid) {
-                // new up the StoryApplication
-                var app = new StoryApplication(title: story.Title, content: story.Content, storyType: story.StoryType);
-
-                // call our StoryCreator service
+                // Call our StoryCreator service
                 var sc = new StoryCreator();
                 StoryCreatorResult result = sc.CreateNewStory(app);
 
-                //db.Stories.Add(story);
-                //db.SaveChanges();
-                if (result.StoryApplication.IsValid())
+                if (result.StoryApplication.IsValid()) {
                     return RedirectToAction("Index");
+                }
             }
 
-            return View(story);
+            return View(app);
         }
 
         // GET: /Story/Edit/5

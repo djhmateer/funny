@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Funny.Models {
 
     public enum StoryApplicationStatus {
@@ -10,12 +12,20 @@ namespace Funny.Models {
     }
 
     public class StoryApplication {
+        [MaxLength(255)]
+        [Required]
         public string Title { get; set; }
+        [MaxLength(2048)]
+        [Required]
         public string Content { get; set; }
         public StoryType StoryType { get; set; }
         public StoryApplicationStatus Status { get; set; }
         public string Message { get; set; }
         public int Rating { get; set; }
+        public string VideoURL { get; set; }
+        public string ImageURL { get; set; }
+
+        public StoryApplication() { }
 
         public StoryApplication(string title, string content, StoryType storyType) {
             this.Title = title;
