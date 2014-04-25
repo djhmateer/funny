@@ -38,12 +38,10 @@ namespace Web.Controllers {
                 // Call our StoryCreator service
                 var sc = new StoryCreator();
                 StoryCreatorResult result = sc.CreateNewStory(app);
-
                 if (result.StoryApplication.IsValid()) {
                     return RedirectToAction("Index");
                 }
             }
-
             return View(app);
         }
 
@@ -56,21 +54,29 @@ namespace Web.Controllers {
             if (story == null) {
                 return HttpNotFound();
             }
-            return View(story);
+            // Map to a StoryApplication
+            var app = new StoryApplication();
+            app.StoryID = story.ID;
+            app.Title = story.Title;
+            app.Content = story.Content;
+            app.Rating = story.Rating;
+            app.StoryType = story.StoryType;
+
+            return View(app);
         }
 
-        // POST: /Story/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,Content,Rating,CreatedAt,StoryType")] Story story) {
+        public ActionResult Edit(StoryApplication app) {
             if (ModelState.IsValid) {
-                db.Entry(story).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // Call our StoryCreator service
+                var sc = new StoryCreator();
+                StoryCreatorResult result = sc.EditStory(app);
+                if (result.StoryApplication.IsValid()) {
+                    return RedirectToAction("Index");
+                }
             }
-            return View(story);
+            return View(app);
         }
 
         // GET: /Story/Delete/5

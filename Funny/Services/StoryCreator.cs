@@ -40,19 +40,26 @@ namespace Funny.Services {
         }
 
         // Part 2
-        public Story AcceptApplication() {
+        private Story AcceptApplication(bool isEdit = false) {
             var story = new Story();
             using (var session = new Session()) {
                 CurrentApplication.Status = StoryApplicationStatus.Accepted;
 
-                // Create Story from CurrentStory
+                if (isEdit){
+                    // Get existing Story
+                    story = session.Stories.Find(CurrentApplication.StoryID);
+                }
+
                 story.Title = CurrentApplication.Title;
                 story.Content = CurrentApplication.Content;
                 story.Rating = CurrentApplication.Rating;
                 story.CreatedAt = DateTime.Now;
                 story.StoryType = CurrentApplication.StoryType;
 
-                session.Stories.Add(story);
+                if (!isEdit){
+                    session.Stories.Add(story);
+                }
+
                 session.SaveChanges();
             }
             return story;
@@ -62,7 +69,6 @@ namespace Funny.Services {
         public StoryCreatorResult CreateNewStory(StoryApplication app) {
             var result = new StoryCreatorResult();
 
-            //app.IsValid = true;
             CurrentApplication = app;
             result.StoryApplication = app;
             result.StoryApplication.Message = "Successfully created a new story!";
@@ -81,6 +87,21 @@ namespace Funny.Services {
             return result;
         }
 
-        
+        public StoryCreatorResult EditStory(StoryApplication app) {
+            var result = new StoryCreatorResult();
+            CurrentApplication = app;
+            result.StoryApplication = app;
+            result.StoryApplication.Message = "Successfully edited story!";
+
+            if (TitleNotPresent())
+                return InvalidApplication("Title is missing");
+
+            if (TitleIsInvalid())
+                return InvalidApplication("Title is invalid - needs to be 4 or more characters");
+
+            // Accept the StoryApplication
+            result.NewStory = AcceptApplication(isEdit: true);
+            return result;
+        }
     }
 }
