@@ -26,7 +26,8 @@ namespace Funny.Services {
         private bool TitleAlreadyExists() {
             bool exists;
             using (var session = new Session()) {
-                exists = session.Stories.FirstOrDefault(s => s.Title == CurrentApplication.Title) != null;
+                exists = session.Stories.FirstOrDefault(s => s.Title == CurrentApplication.Title
+                                                            && s.ID != CurrentApplication.StoryID) != null;
             }
             return exists;
         }
@@ -40,7 +41,8 @@ namespace Funny.Services {
         }
 
         // Part 2
-        private Story AcceptApplication(bool isEdit = false) {
+        private Story AcceptApplication() {
+            bool isEdit = CurrentApplication.StoryID != 0;
             var story = new Story();
             using (var session = new Session()) {
                 CurrentApplication.Status = StoryApplicationStatus.Accepted;
@@ -66,12 +68,17 @@ namespace Funny.Services {
         }
 
         // Part 1
-        public StoryCreatorResult CreateNewStory(StoryApplication app) {
+        public StoryCreatorResult CreateOrEditStory(StoryApplication app){
+            bool isEdit = app.StoryID != 0;
             var result = new StoryCreatorResult();
 
             CurrentApplication = app;
             result.StoryApplication = app;
-            result.StoryApplication.Message = "Successfully created a new story!";
+            if (isEdit){
+                result.StoryApplication.Message = "Successfully edited story!";
+            } else{
+                result.StoryApplication.Message = "Successfully created a new story!";
+            }
 
             if (TitleNotPresent())
                 return InvalidApplication("Title is missing");
@@ -84,23 +91,6 @@ namespace Funny.Services {
 
             // Accept the StoryApplication
             result.NewStory = AcceptApplication();
-            return result;
-        }
-
-        public StoryCreatorResult EditStory(StoryApplication app) {
-            var result = new StoryCreatorResult();
-            CurrentApplication = app;
-            result.StoryApplication = app;
-            result.StoryApplication.Message = "Successfully edited story!";
-
-            if (TitleNotPresent())
-                return InvalidApplication("Title is missing");
-
-            if (TitleIsInvalid())
-                return InvalidApplication("Title is invalid - needs to be 4 or more characters");
-
-            // Accept the StoryApplication
-            result.NewStory = AcceptApplication(isEdit: true);
             return result;
         }
     }

@@ -9,7 +9,7 @@ namespace Specs.Creation {
         StoryCreatorResult _result;
         public ShortTitle() {
             var app = new StoryApplication("asd", "content", StoryType.Joke);
-            _result = new StoryCreator().CreateNewStory(app);
+            _result = new StoryCreator().CreateOrEditStory(app);
         }
 
         [Fact(DisplayName = "StoryApplication is denied")]
@@ -28,19 +28,19 @@ namespace Specs.Creation {
         StoryCreatorResult _result;
         public ExistingTitle() {
             var app1 = new StoryApplication("asdf", "content", StoryType.Joke);
-            _result = new StoryCreator().CreateNewStory(app1);
+            _result = new StoryCreator().CreateOrEditStory(app1);
         }
 
         [Fact(DisplayName = "StoryApplication is denied")]
         public void DoesNotThrow() {
             var app2 = new StoryApplication("asdf", "content", StoryType.Joke);
-            Assert.DoesNotThrow( () => new StoryCreator().CreateNewStory(app2));
+            Assert.DoesNotThrow( () => new StoryCreator().CreateOrEditStory(app2));
         }
 
         [Fact(DisplayName = "A message is shown to the administrator explaining why")]
         public void MessageShown() {
             var app2 = new StoryApplication("asdf", "content", StoryType.Joke);
-            var result2 = new StoryCreator().CreateNewStory(app2);
+            var result2 = new StoryCreator().CreateOrEditStory(app2);
             Assert.Contains("exists", result2.StoryApplication.Message);
         }
     }

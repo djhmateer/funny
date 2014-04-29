@@ -28,6 +28,8 @@ namespace Funny.Models {
         [Required]
         public string Content { get; set; }
         public int Rating { get; set; }
+        public string ImageURL { get; set; }
+        public string VideoURL { get; set; }
         public DateTime CreatedAt { get; set; }
         public StoryType StoryType { get; set; }
         public ICollection<Vote> Votes { get; set; }

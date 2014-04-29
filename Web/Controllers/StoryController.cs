@@ -37,7 +37,7 @@ namespace Web.Controllers {
             if (ModelState.IsValid) {
                 // Call our StoryCreator service
                 var sc = new StoryCreator();
-                StoryCreatorResult result = sc.CreateNewStory(app);
+                StoryCreatorResult result = sc.CreateOrEditStory(app);
                 if (result.StoryApplication.IsValid()) {
                     return RedirectToAction("Index");
                 }
@@ -71,7 +71,7 @@ namespace Web.Controllers {
             if (ModelState.IsValid) {
                 // Call our StoryCreator service
                 var sc = new StoryCreator();
-                StoryCreatorResult result = sc.EditStory(app);
+                StoryCreatorResult result = sc.CreateOrEditStory(app);
                 if (result.StoryApplication.IsValid()) {
                     return RedirectToAction("Index");
                 }
@@ -88,6 +88,7 @@ namespace Web.Controllers {
             if (story == null) {
                 return HttpNotFound();
             }
+            
             return View(story);
         }
 

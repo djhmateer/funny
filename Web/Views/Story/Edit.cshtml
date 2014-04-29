@@ -6,6 +6,7 @@
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.StoryID)
 
         @Html.Partial("_CreateOrEdit", Model)
 
