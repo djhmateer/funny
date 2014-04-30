@@ -19,7 +19,7 @@ namespace Funny.Migrations {
                 context.Stories.AddOrUpdate(
                 s => s.ID,
                 new Story { ID = 1, StoryType = StoryType.Joke, Title = "Banana", Content = "Q: Why did the banana go to the doctors? A: He wasn't peeling very well", CreatedAt = DateTime.Now, Rating = 1 },
-                //new Story { ID = 2, StoryType = StoryType.Video, Title = "Glasgow Pizza Shop", VideoURL = "//www.youtube.com/embed/y0TxfwB3BWQ?rel=0", CreatedAt = DateTime.Now, Rating = 2 }
+                new Story { ID = 2, StoryType = StoryType.Video, Title = "Glasgow Pizza Shop", VideoURL = "//www.youtube.com/embed/y0TxfwB3BWQ?rel=0", CreatedAt = DateTime.Now, Rating = 2 },
                 new Story { ID = 3, StoryType = StoryType.Joke, Title = "Lily", Content = "Q: What do you call a girl with a frog on her heard?  A: Lily", CreatedAt = DateTime.Now, Rating = 5 }
                 );
             }

@@ -4,14 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Funny.DB;
+using Funny.Services;
 
 namespace Web.Controllers {
     public class HomeController : Controller {
-        private Session db = new Session();
+        //private Session db = new Session();
 
         public ActionResult Index(){
-            var stories = db.Stories
-                .OrderByDescending(s => s.Rating);
+            var viewer = new StoryViewer();
+            var stories = viewer.ShowAllStories();
+            //var stories = db.Stories
+            //    .OrderByDescending(s => s.Rating);
             return View(stories);
         }
 

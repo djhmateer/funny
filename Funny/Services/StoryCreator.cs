@@ -47,7 +47,7 @@ namespace Funny.Services {
             using (var session = new Session()) {
                 CurrentApplication.Status = StoryApplicationStatus.Accepted;
 
-                if (isEdit){
+                if (isEdit) {
                     // Get existing Story
                     story = session.Stories.Find(CurrentApplication.StoryID);
                 }
@@ -58,7 +58,7 @@ namespace Funny.Services {
                 story.CreatedAt = DateTime.Now;
                 story.StoryType = CurrentApplication.StoryType;
 
-                if (!isEdit){
+                if (!isEdit) {
                     session.Stories.Add(story);
                 }
 
@@ -68,15 +68,15 @@ namespace Funny.Services {
         }
 
         // Part 1
-        public StoryCreatorResult CreateOrEditStory(StoryApplication app){
+        public StoryCreatorResult CreateOrEditStory(StoryApplication app) {
             bool isEdit = app.StoryID != 0;
             var result = new StoryCreatorResult();
 
             CurrentApplication = app;
             result.StoryApplication = app;
-            if (isEdit){
+            if (isEdit) {
                 result.StoryApplication.Message = "Successfully edited story!";
-            } else{
+            } else {
                 result.StoryApplication.Message = "Successfully created a new story!";
             }
 

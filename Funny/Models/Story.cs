@@ -25,7 +25,6 @@ namespace Funny.Models {
         [Required]
         public string Title { get; set; }
         [MaxLength(2048)]
-        [Required]
         public string Content { get; set; }
         public int Rating { get; set; }
         public string ImageURL { get; set; }

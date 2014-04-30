@@ -52,6 +52,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Creation\EditStoryReceived.cs" />
     <Compile Include="Creation\EmptyTitle.cs" />
     <Compile Include="Creation\StoryApplicationValidations.cs" />
     <Compile Include="Creation\ValidStoryReceived.cs" />
