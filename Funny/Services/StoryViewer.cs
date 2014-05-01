@@ -1,18 +1,24 @@
-﻿using System;
+﻿using Funny.DB;
+using Funny.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Funny.DB;
-using Funny.Models;
 
 namespace Funny.Services {
     public class StoryViewer {
-        public List<Story> ShowAllStories(){
-            var result = new List<Story>();
+        public List<Story> ShowAllStoriesByRatingDescending(){
+            List<Story> result;
             using (var session = new Session()){
                 result = session.Stories
                     .OrderByDescending(s => s.Rating)
+                    .ToList();
+            }
+            return result;
+        }
+        public List<Story> ShowAllStoriesByDateCreatedDescending(){
+            List<Story> result;
+            using (var session = new Session()) {
+                result = session.Stories
+                    .OrderByDescending(s => s.CreatedAt)
                     .ToList();
             }
             return result;

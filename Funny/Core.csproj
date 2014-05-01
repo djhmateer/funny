@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\StoryCreator.cs" />
     <Compile Include="Services\StoryViewer.cs" />
+    <Compile Include="Services\StoryVoter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

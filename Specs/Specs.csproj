@@ -56,7 +56,10 @@
     <Compile Include="Creation\EmptyTitle.cs" />
     <Compile Include="Creation\StoryApplicationValidations.cs" />
     <Compile Include="Creation\ValidStoryReceived.cs" />
+    <Compile Include="Display\ChangeSortOrderToNewestFirst.cs" />
+    <Compile Include="Display\ChangeSortOrderToRating.cs" />
     <Compile Include="Display\VisitHomepage.cs" />
+    <Compile Include="Display\VoteForAStory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
@@ -65,9 +68,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Funny\Funny.csproj">
+    <ProjectReference Include="..\Funny\Core.csproj">
       <Project>{dca9967a-df0f-430e-bf61-271aad48b755}</Project>
-      <Name>Funny</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -256,9 +256,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Funny\Funny.csproj">
+    <ProjectReference Include="..\Funny\Core.csproj">
       <Project>{dca9967a-df0f-430e-bf61-271aad48b755}</Project>
-      <Name>Funny</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

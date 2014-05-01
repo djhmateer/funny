@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Funny", "Funny\Funny.csproj", "{DCA9967A-DF0F-430E-BF61-271AAD48B755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Funny\Core.csproj", "{DCA9967A-DF0F-430E-BF61-271AAD48B755}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specs", "Specs\Specs.csproj", "{E7DF0A62-E39B-4C49-9688-FEF8E5B51749}"
 EndProject

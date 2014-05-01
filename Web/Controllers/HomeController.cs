@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Funny.DB;
+﻿using System.Collections.Generic;
+using Funny.Models;
 using Funny.Services;
+using System.Web.Mvc;
 
 namespace Web.Controllers {
     public class HomeController : Controller {
-        //private Session db = new Session();
 
-        public ActionResult Index(){
+        public ActionResult Index(string sortOrder = "ratingDescending"){
             var viewer = new StoryViewer();
-            var stories = viewer.ShowAllStories();
-            //var stories = db.Stories
-            //    .OrderByDescending(s => s.Rating);
+            List<Story> stories = null;
+            switch (sortOrder){
+                case "ratingDescending":
+                    stories = viewer.ShowAllStoriesByRatingDescending();
+                    break;
+                case "dateCreatedDescending":
+                    stories = viewer.ShowAllStoriesByDateCreatedDescending();
+                    break;
+            }
+            
             return View(stories);
         }
 
