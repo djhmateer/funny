@@ -9,36 +9,53 @@ namespace Specs.Display
     [Trait("Homepage","User votes for a Story")]
     public class VoteForAStory : TestBase{
         StoryVoter _voter;
+        Story _story;
+        public VoteForAStory(){
+            var sc = new StoryCreator();
+            var app = new StoryApplication("Stick", "Whats brown and sticky? A stick", StoryType.Joke);
+            var result = sc.CreateOrEditStory(app);
+            _story = result.NewStory;
+        }
 
         [Fact(DisplayName = "Rating is incremented by 1")]
         public void RatingIsIncrementedBy1() {
-            var _sc = new StoryCreator();
-            var app = new StoryApplication("Stick", "Whats brown and sticky? A stick", StoryType.Joke);
-            var _result = _sc.CreateOrEditStory(app);
-            var _story = _result.NewStory;
-
             _voter = new StoryVoter();
-            Story result2 = _voter.AddVote(_story);
-            Assert.Equal(1, result2.Rating);
+            var result = _voter.AddVote(_story.ID);
+            Assert.Equal(1, result.Rating);
         }
 
-        //[Fact(DisplayName = "A messsage is provided to the User")]
-        //public void AMessageIsProvidedForUser() {
-        //    throw new NotImplementedException();
-        //}
-         
-        //[Fact(DisplayName = "Show all 3 Stories")]
-        //public void ShowAllStories() {
-        //    var result = _viewer.ShowAllStoriesByDateCreatedDescending();
-        //    Assert.Equal(3, result.Count());
-        //}
-        //[Fact(DisplayName = "Show all Stories newest first")]
-        //public void ShowListOfStoriesInDescendingDateCreatedOrder() {
-        //    var result = _viewer.ShowAllStoriesByDateCreatedDescending();
-        //    // Banana +5mins, Pizza+2, Lily0 is order of date insert in db
-        //    Assert.Equal("Banana", result[0].Title);
-        //    Assert.Equal("Pizza", result[1].Title);
-        //    Assert.Equal("Lily", result[2].Title);
-        //}
+        [Fact(DisplayName = "A messsage is provided to the User")]
+        public void AMessageIsProvidedForUser(){
+            throw new NotImplementedException();
+        }
+
+        [Fact(DisplayName = "Sort order is remembered")]
+        public void SortOrder(){
+            throw new NotImplementedException();
+        }
+    }
+
+    [Trait("Homepage", "User votes for a Story twice")]
+    public class VoteForAStoryTwice : TestBase {
+        StoryVoter _voter;
+        Story _story;
+        public VoteForAStoryTwice() {
+            var sc = new StoryCreator();
+            var app = new StoryApplication("Stick", "Whats brown and sticky? A stick", StoryType.Joke);
+            var result = sc.CreateOrEditStory(app);
+            _story = result.NewStory;
+        }
+
+        [Fact(DisplayName = "Rating is not incremented by 1")]
+        public void RatingIsIncrementedBy1() {
+            //_voter = new StoryVoter();
+            //var result = _voter.AddVote(_story.ID);
+            //Assert.Equal(1, result.Rating);
+        }
+
+        [Fact(DisplayName = "A messsage is provided to the User")]
+        public void AMessageIsProvidedForUser() {
+            throw new NotImplementedException();
+        }
     }
 }

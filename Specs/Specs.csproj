@@ -58,6 +58,7 @@
     <Compile Include="Creation\ValidStoryReceived.cs" />
     <Compile Include="Display\ChangeSortOrderToNewestFirst.cs" />
     <Compile Include="Display\ChangeSortOrderToRating.cs" />
+    <Compile Include="Display\ShowAdminInMenu.cs" />
     <Compile Include="Display\VisitHomepage.cs" />
     <Compile Include="Display\VoteForAStory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

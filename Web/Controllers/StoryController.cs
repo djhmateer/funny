@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using Funny.Services;
 
 namespace Web.Controllers {
+    //[Authorize(Roles = "admin")]
+    [Authorize(Users = "Dave")]
     public class StoryController : Controller {
         // private field initialisation without need for constructor
         // happens before this/base constructor
@@ -88,7 +90,7 @@ namespace Web.Controllers {
             if (story == null) {
                 return HttpNotFound();
             }
-            
+
             return View(story);
         }
 

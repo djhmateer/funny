@@ -6,17 +6,14 @@
 
 <table class="table">
     <tr>
+        <!-- Up Vote-->
+        <th></th>
         <th>
             @Html.ActionLink("Rating", "Index", new { sortOrder = "ratingDescending" })
         </th>
 
-        @*<th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>*@
-        <th>
-        </th>
-        <th>
-        </th>
+        <th></th>
+        <th></th>
         <th>
             @Html.ActionLink("Date", "Index", new { sortOrder = "dateCreatedDescending" })
         </th>
@@ -28,12 +25,13 @@
     @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.ActionLink("^^^", "Vote", new { storyID = item.ID })
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
 
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>*@
+
             <td>
                 @Html.DisplayFor(modelItem => item.Content)
             </td>

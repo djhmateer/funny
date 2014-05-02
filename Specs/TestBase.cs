@@ -11,7 +11,7 @@ namespace Specs {
         }
 
         public void Dispose() {
-            new Session().Database.ExecuteSqlCommand("DELETE FROM Votes; DELETE FROM Stories");
+            //new Session().Database.ExecuteSqlCommand("DELETE FROM Votes; DELETE FROM Stories");
         }
     }
 
@@ -56,10 +56,12 @@ namespace Specs {
                 CreatedAt = DateTime.Now,
                 Rating = 5
             });
-            session.SaveChanges();
 
+            var x = 1;
+            session.SaveChanges();
         }
 
+        // Useful to comment this out as after each ncrunch test run, data is left in the db
         public void Dispose() {
             //new Session().Database.ExecuteSqlCommand("DELETE FROM Votes; DELETE FROM Stories");
         }

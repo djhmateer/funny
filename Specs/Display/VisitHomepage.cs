@@ -1,10 +1,9 @@
 ﻿using Funny.Services;
-using System;
 using System.Linq;
 using Xunit;
 
 namespace Specs.Display {
-    [Trait("Homepage","User visits")]
+    [Trait("Homepage","User visits homepage")]
     public class VisitHomepage : TestBaseWithData
     {
         StoryViewer _viewer;
