@@ -1,13 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
+using Funny.DB;
 using Funny.Models;
 using Funny.Services;
+using Web.Controllers;
 using Xunit;
 
 namespace Specs.Display
 {
     [Trait("Homepage","User votes for a Story")]
-    public class VoteForAStory : TestBase{
+    public class VoteForAStory : TestBaseWithData{
         StoryVoter _voter;
         Story _story;
         public VoteForAStory(){
@@ -29,13 +33,41 @@ namespace Specs.Display
             throw new NotImplementedException();
         }
 
-        [Fact(DisplayName = "Sort order is remembered")]
+        [Fact(DisplayName = "Default of ratingDescending sort order is remembered")]
         public void SortOrder(){
-            throw new NotImplementedException();
+            // Get StoryID of last one entered
+            var session = new Session();
+            int storyID = session.Stories.FirstOrDefault(st => st.Rating == 5).ID;
+
+            var controller = new HomeController();
+            // Rating entered as 10,2,5.. so this sort order is 10,5,2
+            var result = controller.Index(sortOrder: "ratingDescending") as ViewResult;
+
+            // Vote for the last story
+            var redirectResult = (RedirectToRouteResult)controller.Vote(storyID);
+
+            // Want to assert the RedirectToAction has worked
+            Assert.Equal(redirectResult.RouteValues["sortOrder"], "ratingDescending");
+        }
+
+        [Fact(DisplayName = "Sorting by date with newest first is remembered")]
+        public void SortOrderDateDescending() {
+            // Get StoryID of last one entered
+            var session = new Session();
+            int storyID = session.Stories.FirstOrDefault(st => st.Rating == 5).ID;
+
+            var controller = new HomeController();
+            var result = controller.Index(sortOrder: "dateCreatedDescending") as ViewResult;
+
+            // Vote for the last story
+            var redirectResult = (RedirectToRouteResult)controller.Vote(storyID, sortOrder: "dateCreatedDescending");
+
+            // Want to assert the RedirectToAction has worked
+            Assert.Equal(redirectResult.RouteValues["sortOrder"], "dateCreatedDescending");
         }
     }
 
-    [Trait("Homepage", "User votes for a Story twice")]
+    [Trait("Homepage", "User votes for a Story twice in the space of 10 seconds")]
     public class VoteForAStoryTwice : TestBase {
         StoryVoter _voter;
         Story _story;
@@ -47,10 +79,14 @@ namespace Specs.Display
         }
 
         [Fact(DisplayName = "Rating is not incremented by 1")]
-        public void RatingIsIncrementedBy1() {
-            //_voter = new StoryVoter();
-            //var result = _voter.AddVote(_story.ID);
-            //Assert.Equal(1, result.Rating);
+        public void RatingIsNotIncrementedBy1() {
+            _voter = new StoryVoter();
+            var result = _voter.AddVote(_story.ID);
+            Assert.Equal(1, result.Rating);
+
+            // Vote again
+            var result2 = _voter.AddVote(_story.ID);
+            Assert.Equal(1, result2.Rating);
         }
 
         [Fact(DisplayName = "A messsage is provided to the User")]

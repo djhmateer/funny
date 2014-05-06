@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Routing;
 using Funny.Models;
 using Funny.Services;
 using System.Web.Mvc;
@@ -20,11 +21,10 @@ namespace Web.Controllers {
             return View(stories);
         }
 
-        public ActionResult Vote(int? storyID) {
-            // Call StoryVoter service
+        public ActionResult Vote(int? storyID, string sortOrder = "ratingDescending") {
             var sv = new StoryVoter();
             Story result = sv.AddVote(storyID);
-            return RedirectToAction("Index", "Home", null);
+            return RedirectToAction("Index", "Home", new { sortOrder = sortOrder});
         }
 
         public ActionResult About() {

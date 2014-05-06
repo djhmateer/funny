@@ -31,7 +31,7 @@ namespace Specs {
             //            new Session().Database.ExecuteSqlCommand(sql);
 
             session.Stories.Add(new Story {
-                ID = 1,
+                //ID = 1,
                 StoryType = StoryType.Joke,
                 Title = "Banana",
                 Content = "Q: Why did the banana go to the doctors? A: He wasn't peeling very well",
@@ -40,7 +40,7 @@ namespace Specs {
             });
 
             session.Stories.Add(new Story {
-                ID = 2,
+                //ID = 2,
                 StoryType = StoryType.Video,
                 Title = "Pizza",
                 VideoURL = "//www.youtube.com/embed/y0TxfwB3BWQ?rel=0",
@@ -49,7 +49,7 @@ namespace Specs {
             });
 
             session.Stories.Add(new Story{
-                ID = 3,
+                //ID = 3,
                 StoryType = StoryType.Joke,
                 Title = "Lily",
                 Content = "Q: What do you call a girl with a frog on her heard?  A: Lily",
@@ -57,7 +57,6 @@ namespace Specs {
                 Rating = 5
             });
 
-            var x = 1;
             session.SaveChanges();
         }
 
