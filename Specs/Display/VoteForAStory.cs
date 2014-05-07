@@ -25,12 +25,14 @@ namespace Specs.Display
         public void RatingIsIncrementedBy1() {
             _voter = new StoryVoter();
             var result = _voter.AddVote(_story.ID);
-            Assert.Equal(1, result.Rating);
+            Assert.Equal(1, result.Story.Rating);
         }
-
         [Fact(DisplayName = "A messsage is provided to the User")]
         public void AMessageIsProvidedForUser(){
-            throw new NotImplementedException();
+            _voter = new StoryVoter();
+            var result = _voter.AddVote(_story.ID);
+            Assert.Equal("Thank you for voting!", result.Message);
+            Assert.Equal(true, result.VoteSucceeded);
         }
 
         [Fact(DisplayName = "Default of ratingDescending sort order is remembered")]
@@ -82,16 +84,22 @@ namespace Specs.Display
         public void RatingIsNotIncrementedBy1() {
             _voter = new StoryVoter();
             var result = _voter.AddVote(_story.ID);
-            Assert.Equal(1, result.Rating);
+            Assert.Equal(1, result.Story.Rating);
 
             // Vote again
             var result2 = _voter.AddVote(_story.ID);
-            Assert.Equal(1, result2.Rating);
+            Assert.Equal(1, result2.Story.Rating);
         }
 
         [Fact(DisplayName = "A messsage is provided to the User")]
         public void AMessageIsProvidedForUser() {
-            throw new NotImplementedException();
+            _voter = new StoryVoter();
+            var result = _voter.AddVote(_story.ID);
+
+            // Vote again
+            var result2 = _voter.AddVote(_story.ID);
+            Assert.False(result2.VoteSucceeded);
+            Assert.Equal("Only 1 vote per story allowed every 10 seconds :-)", result2.Message);
         }
     }
 }

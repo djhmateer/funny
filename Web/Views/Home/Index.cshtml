@@ -3,6 +3,18 @@
 @{
     ViewBag.Title = "British Humour";
 }
+@if (ViewBag.GreenMessage == true) {
+    <div class="alert-success" align="center">
+        @ViewBag.Message
+    </div>
+}
+
+<!-- Red -->
+@if (ViewBag.RedMessage == true) {
+    <div class="alert-danger" align="center">
+        @ViewBag.Message
+    </div>
+}
 
 <table class="table">
     <tr>

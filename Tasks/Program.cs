@@ -10,7 +10,7 @@ namespace Tasks {
             var story = new Story { Title = "Stick8", Content = "test"};
             session.Stories.Add(story);
 
-            var vote = new Vote { Story=story, RatingChange = 1, CreatedAt = DateTime.Now };
+            var vote = new Vote { Story=story, CreatedAt = DateTime.Now };
             session.Votes.Add(vote);
             session.SaveChanges();
 
@@ -18,7 +18,7 @@ namespace Tasks {
                 Console.WriteLine(sto.Title);
                 if (sto.Votes != null) {
                     var vot = sto.Votes.FirstOrDefault();
-                    Console.WriteLine(vot.RatingChange);
+                    Console.WriteLine(vot.CreatedAt);
                 }
             }
 

@@ -34,6 +34,14 @@
 </div>
 
 <div class="form-group">
+    @Html.LabelFor(model => model.Rating, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(model => model.Rating, new { style = "width: 500px;" })
+        @Html.ValidationMessageFor(model => model.Rating)
+    </div>
+</div>
+
+<div class="form-group">
     @Html.LabelFor(model => model.VideoURL, new { @class = "control-label col-md-2" }) eg //www.youtube.com/embed/y0TxfwB3BWQ?rel=0
     <div class="col-md-10">
         @Html.TextBoxFor(model => model.VideoURL, new { style = "width: 500px;" })

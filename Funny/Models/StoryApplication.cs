@@ -27,19 +27,18 @@ namespace Funny.Models {
 
         public StoryApplication() { }
 
+        // TODO Why this?
         public StoryApplication(string title, string content, StoryType storyType) :
-            this(title, content, storyType, null, null, 0) {
+            this(title, content, storyType, null, null, 0, 0) {
         }
 
-        //public StoryApplication(string title, string content, StoryType storyType, string ImageURL, string VideoURL) {
-        //}
-
-        public StoryApplication(string title, string content, StoryType storyType, string imageUrl, string videoUrl, int storyID) {
+        public StoryApplication(string title, string content, StoryType storyType, string imageUrl, string videoUrl, int storyID, int rating) {
             this.Title = title;
             this.Content = content;
             this.StoryType = storyType;
             this.Status = StoryApplicationStatus.Pending;
             this.StoryID = storyID;
+            this.Rating = rating;
 
             if (String.IsNullOrWhiteSpace(this.Title)
                || String.IsNullOrWhiteSpace(this.Content))

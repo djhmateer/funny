@@ -20,7 +20,7 @@ namespace Specs.Creation
             // Edit that story using the id created above
             var _sc2 = new StoryCreator();
             var app2 = new StoryApplication("Stick", "Whats brown and sticky? A stick", 
-                StoryType.Joke, "", "", storyID:_result.NewStory.ID);
+                StoryType.Joke, "", "", storyID:_result.NewStory.ID, rating:5);
             var _result2 = _sc2.CreateOrEditStory(app2);
             _story2 = _result2.NewStory;
         }
@@ -29,6 +29,11 @@ namespace Specs.Creation
         public void StoryCreatedAt(){
             var dbMinute = _story2.CreatedAt.Minute;
             Assert.Equal(DateTime.Now.Minute, dbMinute);
+        }
+        [Fact(DisplayName = "Rating remains the same")]
+        public void RatingRemainsTheSame() {
+            var rating = _story2.Rating;
+            Assert.Equal(5, rating);
         }
         [Fact(DisplayName = "Story is validated")]
         public void StoryValidated() {
