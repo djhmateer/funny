@@ -57,6 +57,8 @@ namespace Core.Services {
                 story.Rating = CurrentApplication.Rating;
                 story.CreatedAt = DateTime.Now;
                 story.StoryType = CurrentApplication.StoryType;
+                story.VideoURL = CurrentApplication.VideoURL;
+                story.ImageURL = CurrentApplication.ImageURL;
 
                 if (!isEdit) {
                     session.Stories.Add(story);
