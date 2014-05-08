@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using Funny.DB;
-using Funny.Models;
+using Core.DB;
+using Core.Models;
 
-namespace Funny.Services {
+namespace Core.Services {
     public class StoryVoterResult {
         public Story Story { get; set; }
         public String Message { get; set; }

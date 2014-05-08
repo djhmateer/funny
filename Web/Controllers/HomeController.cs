@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Web.Routing;
-using Funny.Models;
-using Funny.Services;
+﻿using Core.Models;
+using Core.Services;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Web.Controllers {
@@ -12,22 +11,25 @@ namespace Web.Controllers {
             List<Story> stories = null;
             switch (sortOrder) {
                 case "ratingDescending":
-                    stories = viewer.ShowAllStoriesByRatingDescending();
+                    stories = viewer.ShowAllStoriesHighestRatingFirst();
                     break;
                 case "dateCreatedDescending":
                     stories = viewer.ShowAllStoriesByDateCreatedDescending();
                     break;
             }
 
-            // What type of message to display to user ie green or red
-            if (message.Contains("Thank you for voting!") && message != "") {
+            DisplayMessageToUserIfRequired(message);
+            return View(stories);
+        }
+
+        private void DisplayMessageToUserIfRequired(string message){
+            // Is there a message, and what type to display to user ie green or red
+            if (message.Contains("Thank you for voting!") && message != ""){
                 ViewBag.GreenMessage = true;
-            } else {
+            } else{
                 ViewBag.RedMessage = true;
             }
             ViewBag.Message = message;
-
-            return View(stories);
         }
 
         public ActionResult Vote(int? storyID, string sortOrder = "ratingDescending") {
@@ -39,11 +41,6 @@ namespace Web.Controllers {
 
         public ActionResult About() {
             ViewBag.Message = "Your application description page.";
-            return View();
-        }
-
-        public ActionResult Contact() {
-            ViewBag.Message = "Your contact page.";
             return View();
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Funny.Models {
+namespace Core.Models {
     public class Story {
         public int ID { get; set; }
         [MaxLength(255)]

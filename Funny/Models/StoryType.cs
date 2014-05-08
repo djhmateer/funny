@@ -1,4 +1,4 @@
-﻿namespace Funny.Models
+﻿namespace Core.Models
 {
     public enum StoryType {
         Joke,

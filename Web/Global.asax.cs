@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Core.DB;
 
 namespace Web {
     public class MvcApplication : System.Web.HttpApplication {
@@ -12,7 +13,7 @@ namespace Web {
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // Stops azure auto migrations error - but basically we're out of sync now.. manually handle in future
-            Database.SetInitializer<Funny.DB.Session>(null);
+            Database.SetInitializer<Session>(null);
         }
     }
 }

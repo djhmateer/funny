@@ -1,14 +1,12 @@
-using System;
-using System.Collections.Generic;
+using Core.DB;
+using Core.Models;
+using Core.Services;
 using System.Linq;
 using System.Web.Mvc;
-using Funny.DB;
-using Funny.Models;
-using Funny.Services;
 using Web.Controllers;
 using Xunit;
 
-namespace Specs.Display
+namespace Tests.Display
 {
     [Trait("Homepage","User votes for a Story")]
     public class VoteForAStory : TestBaseWithData{
@@ -66,40 +64,6 @@ namespace Specs.Display
 
             // Want to assert the RedirectToAction has worked
             Assert.Equal(redirectResult.RouteValues["sortOrder"], "dateCreatedDescending");
-        }
-    }
-
-    [Trait("Homepage", "User votes for a Story twice in the space of 10 seconds")]
-    public class VoteForAStoryTwice : TestBase {
-        StoryVoter _voter;
-        Story _story;
-        public VoteForAStoryTwice() {
-            var sc = new StoryCreator();
-            var app = new StoryApplication("Stick", "Whats brown and sticky? A stick", StoryType.Joke);
-            var result = sc.CreateOrEditStory(app);
-            _story = result.NewStory;
-        }
-
-        [Fact(DisplayName = "Rating is not incremented by 1")]
-        public void RatingIsNotIncrementedBy1() {
-            _voter = new StoryVoter();
-            var result = _voter.AddVote(_story.ID);
-            Assert.Equal(1, result.Story.Rating);
-
-            // Vote again
-            var result2 = _voter.AddVote(_story.ID);
-            Assert.Equal(1, result2.Story.Rating);
-        }
-
-        [Fact(DisplayName = "A messsage is provided to the User")]
-        public void AMessageIsProvidedForUser() {
-            _voter = new StoryVoter();
-            var result = _voter.AddVote(_story.ID);
-
-            // Vote again
-            var result2 = _voter.AddVote(_story.ID);
-            Assert.False(result2.VoteSucceeded);
-            Assert.Equal("Only 1 vote per story allowed every 10 seconds :-)", result2.Message);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using Funny.Services;
+﻿using Core.Services;
 using System.Linq;
 using Xunit;
 
-namespace Specs.Display
+namespace Tests.Display
 {
     [Trait("Homepage","User changes date sort newest first")]
     public class ChangeSortOrderToNewestFirst : TestBaseWithData {

@@ -1,11 +1,11 @@
-﻿using Funny.DB;
-using Funny.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Core.DB;
+using Core.Models;
 
-namespace Funny.Services {
+namespace Core.Services {
     public class StoryViewer {
-        public List<Story> ShowAllStoriesByRatingDescending(){
+        public List<Story> ShowAllStoriesHighestRatingFirst(){
             List<Story> result;
             using (var session = new Session()){
                 result = session.Stories

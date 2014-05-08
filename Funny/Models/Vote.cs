@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Funny.Models
+namespace Core.Models
 {
     public class Vote {
         public int ID { get; set; }

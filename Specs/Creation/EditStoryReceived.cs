@@ -1,11 +1,11 @@
 ﻿using System;
-using Funny.Models;
-using Funny.Services;
+using Core.Models;
+using Core.Services;
 using Xunit;
 
-namespace Specs.Creation
+namespace Tests.Creation
 {
-    [Trait("CreateOrEdit", "Valid edit of existing Story")]
+    [Trait("StoryEdit", "Valid edit of existing Story")]
     public class EditStoryReceived : TestBase {
         StoryCreator _sc;
         StoryCreatorResult _result;

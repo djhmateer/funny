@@ -1,10 +1,10 @@
-﻿using Funny.DB;
-using Funny.Models;
+﻿using Core.DB;
+using Core.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Funny.Services;
+using Core.Services;
 
 namespace Web.Controllers {
     //[Authorize(Roles = "admin")]

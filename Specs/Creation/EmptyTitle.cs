@@ -1,9 +1,9 @@
-﻿using Funny.Models;
+﻿using Core.Models;
 using System;
 using Xunit;
 
-namespace Specs.CRUD {
-    [Trait("Registration","Empty Title or Content")]
+namespace Tests.CRUD {
+    [Trait("StoryCreate","Empty Title or Content")]
     public class EmptyTitle : TestBase {
        
         [Fact(DisplayName = "An exception is thrown with empty title")]

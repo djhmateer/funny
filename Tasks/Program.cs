@@ -1,5 +1,5 @@
-﻿using Funny.DB;
-using Funny.Models;
+﻿using Core.DB;
+using Core.Models;
 using System;
 using System.Linq;
 

@@ -1,18 +1,17 @@
-﻿using Funny.Models;
-using Funny.Services;
+﻿using Core.Models;
+using Core.Services;
 using Xunit;
 
-namespace Specs.Creation {
-    [Trait("Registration", "Valid StoryApplication")]
-    public class ValidStoryReceived : TestBase {
-        StoryCreator _sc;
+namespace Tests.Creation {
+    [Trait("StoryCreate", "Valid StoryApplication")]
+    public class ValidStoryApplicationReceived : TestBase {
         StoryCreatorResult _result;
         Story _story;
 
-        public ValidStoryReceived() {
-            _sc = new StoryCreator();
-            var app = new StoryApplication("Stick", "Whats brown and sticky? A stick", StoryType.Joke);
-            _result = _sc.CreateOrEditStory(app);
+        public ValidStoryApplicationReceived() {
+            var storyCreator = new StoryCreator();
+            var application = new StoryApplication("Stick", "Whats brown and sticky? A stick", StoryType.Joke);
+            _result = storyCreator.CreateOrEditStory(application);
             _story = _result.NewStory;
         }
 

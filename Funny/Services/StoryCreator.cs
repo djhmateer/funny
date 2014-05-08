@@ -1,9 +1,9 @@
-﻿using Funny.DB;
-using Funny.Models;
-using System;
+﻿using System;
 using System.Linq;
+using Core.DB;
+using Core.Models;
 
-namespace Funny.Services {
+namespace Core.Services {
     public class StoryCreatorResult {
         public Story NewStory { get; set; }
         public StoryApplication StoryApplication { get; set; }
