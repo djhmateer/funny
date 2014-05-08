@@ -7,10 +7,10 @@ namespace Tests.Creation
     [Trait("StoryCreate","Title has existing title")]
     public class ExistingTitle : TestBase{
 
-        StoryCreatorResult _result;
+        StoryCreatorViewModel viewModel;
         public ExistingTitle() {
             var app1 = new StoryApplication("asdf", "content", StoryType.Joke);
-            _result = new StoryCreator().CreateOrEditStory(app1);
+            viewModel = new StoryCreator().CreateOrEditStory(app1);
         }
 
         [Fact(DisplayName = "StoryApplication is denied")]

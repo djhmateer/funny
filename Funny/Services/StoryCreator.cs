@@ -4,11 +4,11 @@ using Core.DB;
 using Core.Models;
 
 namespace Core.Services {
-    public class StoryCreatorResult {
+    public class StoryCreatorViewModel {
         public Story NewStory { get; set; }
         public StoryApplication StoryApplication { get; set; }
 
-        public StoryCreatorResult() {
+        public StoryCreatorViewModel() {
         }
     }
 
@@ -32,8 +32,8 @@ namespace Core.Services {
             return exists;
         }
 
-        public StoryCreatorResult InvalidApplication(string reason) {
-            var result = new StoryCreatorResult();
+        public StoryCreatorViewModel InvalidApplication(string reason) {
+            var result = new StoryCreatorViewModel();
             CurrentApplication.Status = StoryApplicationStatus.Invalid;
             result.StoryApplication = CurrentApplication;
             result.StoryApplication.Message = reason;
@@ -70,9 +70,9 @@ namespace Core.Services {
         }
 
         // Part 1
-        public StoryCreatorResult CreateOrEditStory(StoryApplication app) {
+        public StoryCreatorViewModel CreateOrEditStory(StoryApplication app) {
             bool isEdit = app.StoryID != 0;
-            var result = new StoryCreatorResult();
+            var result = new StoryCreatorViewModel();
 
             CurrentApplication = app;
             result.StoryApplication = app;
