@@ -12,12 +12,12 @@ namespace Tests.Display {
         public VisitHomepage(){
             _viewer = new StoryViewer();    
         }
-        [Fact(DisplayName = "Show all 3 Stories")]
+        [Fact(DisplayName = "Show all Stories")]
         public void ShowAllStories() {
             List<Story> result = _viewer.ShowAllStoriesHighestRatingFirst();
             Assert.Equal(3, result.Count());
         }
-        [Fact(DisplayName="Show all Stories with highest rating first")]
+        [Fact(DisplayName="Show Stories with highest rating first")]
         public void ShowListOfStoriesHighestRatingFirst() {
             List<Story> result = _viewer.ShowAllStoriesHighestRatingFirst();
             // 10,2,5 is order of insert in db
