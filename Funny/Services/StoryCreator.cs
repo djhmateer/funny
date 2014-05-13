@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net.NetworkInformation;
 using Core.DB;
 using Core.Models;
 
@@ -55,7 +56,8 @@ namespace Core.Services {
                 story.Title = CurrentApplication.Title;
                 story.Content = CurrentApplication.Content;
                 story.Rating = CurrentApplication.Rating;
-                story.CreatedAt = DateTime.Now;
+                // If CreatedAt is set then use it, else now
+                story.CreatedAt = CurrentApplication.CreatedAt ?? DateTime.Now;
                 story.StoryType = CurrentApplication.StoryType;
                 story.VideoURL = CurrentApplication.VideoURL;
                 story.ImageURL = CurrentApplication.ImageURL;

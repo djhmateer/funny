@@ -8,7 +8,7 @@ namespace Tests {
         }
 
         public void Dispose() {
-            //new Session().Database.ExecuteSqlCommand("DELETE FROM Votes; DELETE FROM Stories");
+            new Session().Database.ExecuteSqlCommand("DELETE FROM Votes; DELETE FROM Stories");
         }
     }
 }

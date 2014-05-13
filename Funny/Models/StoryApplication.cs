@@ -24,6 +24,8 @@ namespace Core.Models {
         public string VideoURL { get; set; }
         public string ImageURL { get; set; }
         public int StoryID { get; set; }
+        // To allow date importer to set the date
+        public DateTime? CreatedAt { get; set; }
 
         public StoryApplication() { }
 
