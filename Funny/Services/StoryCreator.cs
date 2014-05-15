@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Net.NetworkInformation;
-using Core.DB;
+﻿using Core.DB;
 using Core.Models;
+using System;
+using System.Linq;
 
 namespace Core.Services {
     public class StoryCreatorResult {
