@@ -1,0 +1,313 @@
+Dave Mateer – Brought up near Glasgow… lived in New Zealand for 8 years.  Now live near Brighton… this isn’t Brighton
+
+Degree is in Mechanical Engineering – worked offshore in Norway in oil business.
+Worked as an outdoor instructor in UK, Sri Lanka and did Raleigh expeditions
+Got into IT/Software in 1999 – 15 years.
+Transitioned into a Dot Net developer since .NET2 days
+
+Worked for small companies in UK, freelancer in Australia for 6 months, and NZ for 4 years..
+--------
+3
+
+Now I work for Quorum – Edinburgh based company.  40 people.  10 developers.  Major clients are large financial institutions
+40 Person company in EdinburghOffice in Brighton (3 people)
+Enterprise Apps
+
+Old technology
+Hacked together by many many people
+Crucial to the business
+Throw hardware at solutions to get them to perform (perf usually an issue)
+Business logic in SP’s
+
+We come in and try to solve these issues
+
+Over last 15 years I’ve found that most apps I develop are CRUDy – Create Read Update Delete
+
+-------------
+4
+Now I work for Quorum – Edinburgh based company.  40 people.  10 developers.  Major clients are large financial institutions
+40 Person company in EdinburghOffice in Brighton (3 people)
+Enterprise Apps
+
+Old technology
+Hacked together by many many people
+Crucial to the business
+Throw hardware at solutions to get them to perform (perf usually an issue)
+Business logic in SP’s
+
+We come in and try to solve these issues
+
+Over last 15 years I’ve found that most apps I develop are CRUDy – Create Read Update Delete
+
+
+------------
+5. Who has used ASP.NET MVC before?
+Who is here because they thought this session may have good jokes?
+
+--------------
+6.
+Even if you’re a beginner swordsman, or an expert
+
+Good News!!!
+
+There is something here for everyone – the super experts, to the person who wants a new joke… we can always learn something from everyone.
+
+Request – Please stop me if you’re confused, as someone else will be too.
+
+
+-------------------
+7. Confession
+I like bad jokes!
+
+9. Brown and Sticky
+
+-----------
+12 Taj
+New MVC Project and solution called Dog
+View website
+Login as a user
+View database
+
+13. Source
+Add to git
+Get it offsite onto github asap so can show it to friends at work or whatever
+Bitbucket another alternative
+
+------
+14 PRoblem
+
+Like in developing business apps, I always write down the problem:
+
+Ok that shouldn’t be too hard…
+
+Slam a website together that works ok on my phone, in a weekend and it should be ok!
+
+Hmm – maybe not.. Lets take this opportunity to play with code…  
+
+How about I call it Winter Project and spend a few months playing..
+
+How about I model the project on what I do at work
+
+Enterprisey
+ASP.NET MVC (couldn’t get Nancy / Mono etc.. Into these classic institutions)
+SQL Server (they’ve usually got it already)
+Base it on my experience of what Enterprise apps need to be… ie
+KISS
+Development vs Maintenance costs.. Up to 80% of a projects costs are in maintenance
+Overseas developers
+Many developers jump in from 1 to 6 months to make small change
+
+http://stackoverflow.com/questions/3477706/development-cost-versus-maintenance-cost
+
+------------
+16. Pluralsight
+Copy others
+Pluralsight
+Great MVC Sample code
+Contoso University
+http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
+SutekiShop
+MVC3, Nhibernate, Windsor, Nunit, Rhino Mocks
+
+
+K Scott Allen is a great educator!
+
+ASP.NET MVC5 Fundamentals – 6 hours
+Building Apps in MVC4 – 7 hours
+ASP.NET MVC4 Fundamentals – 4 hours
+Intro to MVC3 – 6 hours
+
+nTier – Steve Smith
+Testing – Jessie Liberty
+
+DDD – Rob Conery
+
+IoC http://pluralsight.com/training/Courses/Description/ioc-aspdotnet-mvc4
+
+If you’re not a member, 200minutes free trial or look for giveaway tokens for a month..   Or get your work to pay for it recurringly £30 per month
+
+So watched all of these, did lots of reading.. Took about 4 weeks to get something going…
+
+ and then Solution number 1 (winter)was like this:
+
+MVC 5 – New Authorisation model
+Seed method
+Azure – website free (10 per person)
+Glimpse
+Caching
+PagedList.Mvc
+ELMAH (Error Logging Modules and Handlers)
+BitBucket (good for private repos for free)
+StructureMap
+Repository Pattern
+
+
+--------------
+17
+
+Inspired by Pluralsight videos and K Scott Allen
+
+view
+	1break apart
+	controller
+	IRepository<T>
+		UoW
+		Repository
+		both
+	validation
+	test
+-----------------
+19 - Show Code
+Show code from Top
+View
+Controller
+WinterDb (Irepo<T>)
+Model – Story
+Tests – StoryControllerTests.. 
+	given a valid story
+	given invalid story
+TDD style – from point of view of what the application should do
+Complexity – IoC..broken somewhere..
+
+----------------
+25 - Breaks idea of repository as works on a single class
+Not transactional..repo methods should be atomic
+- allows flush of UoW
+Iqueryable so can tweak query with where clauses..breaks repo encapsulation
+- extra layer of abstratcion
+
+------------
+27 - Have you heard the joke about the boomerang?
+It’ll come back to you…
+
+29 - View Model
+webgrid
+html helpers
+
+IoC - repo and UoW FActory
+
+IQueryable 
+PagerModel abstraction
+
+PeopleRepository
+Repository base
+
+Domain Entity and Value Objects
+
+Validation
+	look in person
+	
+------------
+32 - Project 3
+Have a play – some good jokes on here ?
+
+Try to upvote – you may see some business logic!
+
+
+-------------
+33- jokes, videos , images
+
+----------
+36 -
+View
+Controller
+Service
+	3 - UoW.. KISS!
+
+Validation
+	looks different - just simple dataannotations here!
+
+Service
+	ahh - using object composition to help
+	so.. validation handled by the service
+	
+Tests
+	xunit
+	4 - tests from the users point of view ie behaviour of system
+	
+	5 - integration tests are awesome
+
+Console app
+	validation is in service - can call my api to insert
+	show it working
+	
+Authorisation
+	shared view to display menu
+	Story controller
+
+Shiny
+	EnumDropdown helper
+-------------
+
+37 - Jeff Bezos
+Jeff Bezos – CEO of Amazon
+
+“Start with the customer and work backwards”
+
+Easy to remember URL
+Show all Jokes on 1 page
+Default to highest rating first
+Can see most recently added Jokes
+Be able to anonymously vote for a Joke
+Be able to CRUD jokes as an admin
+Easy maintainable system can hand over to another developer
+
+
+
+--------------------
+39 - Two aerials meet on a roof, fall in love get married. The ceremony wasn't much but the reception was brilliant.
+
+-----------
+41 - 
+Enjoy Programming!!!
+
+Ok but how…. I’m working in VB.NET on VS2005 for my day job, on a windows XP VM with 756MB of RAM…. Using ClearCase source control…???!!!!
+
+John Resig – author of jQuery.. Hacker news…
+
+
+Started getting up early… 5:45am seems okay for me.  6am-7:30am code
+
+Take Ellie a cup of tea in bed!
+
+Don’t check emails
+Just try to code on your fun project
+
+
+---------
+42 - John Resig author of jQuery
+
+Last fall, work on my coding side projects came to a head: I wasn’t making adequate progress and I couldn’t find a way to get more done without sacrificing my ability to do effective work at Khan Academy.
+There were a few major problems with how I was working on my side projects. I was primarily working on them during the weekends and sometimes in the evenings during the week. This is a strategy that does not work well for me, as it turns out. I was burdened with an incredible amount of stress to try and complete as much high quality work as possible during the weekend (and if I was unable to it felt like a failure). This was a problem as there’s no guarantee that every weekend will be free – nor that I’ll want to program all day for two days (removing any chance of relaxation or doing anything fun).
+
+There’s also the issue that a week between working on some code is a long time, it’s very easy to forget what you were working on or what you left off on (even if you keep notes). Not to mention if you miss a weekend you end up with a two week gap as a result. That massive multi-week context switch can be deadly (I’ve had many side projects die due to attention starvation like that).
+
+Inspired by the incredible work that Jennifer Dewalt completed last year, in which she taught herself programming by building 180 web sites in 180 days, I felt compelled to try a similar tactic: working on my side projects every single day.
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
