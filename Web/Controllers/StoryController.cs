@@ -1,14 +1,13 @@
 ﻿using Core.DB;
 using Core.Models;
-using System.Data.Entity;
+using Core.Services;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using Core.Services;
 
 namespace Web.Controllers {
     //[Authorize(Roles = "admin")]
-    [Authorize(Users = "Dave")]
+    [Authorize(Users = "Dave2")]
     public class StoryController : Controller {
         // private field initialisation without need for constructor
         // happens before this/base constructor
