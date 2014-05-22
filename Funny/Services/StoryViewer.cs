@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Core.DB;
+﻿using Core.DB;
 using Core.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Core.Services {
     public class StoryViewer {
