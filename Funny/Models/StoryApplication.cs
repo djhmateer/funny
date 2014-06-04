@@ -43,6 +43,8 @@ namespace Core.Models {
             this.Status = StoryApplicationStatus.Pending;
             this.StoryID = storyID;
             this.Rating = rating;
+            this.ImageURL = ImageURL;
+            this.VideoURL = videoUrl;
 
             // Caught by validations in web project, however if using a Console then this would throw
             if (String.IsNullOrWhiteSpace(this.Title)

@@ -62,6 +62,8 @@ namespace Web.Controllers {
             app.Content = story.Content;
             app.Rating = story.Rating;
             app.StoryType = story.StoryType;
+            app.ImageURL = story.ImageURL;
+            app.VideoURL = story.VideoURL;
 
             return View(app);
         }

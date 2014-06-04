@@ -36,4 +36,38 @@ namespace Tests.Creation {
             Assert.Equal("Successfully created a new story!", _result.StoryApplication.Message);
         }
     }
+
+    [Trait("StoryCreate", "Valid Video StoryApplication")]
+    public class ValidVideoStoryApplicationReceived : TestBase {
+        StoryCreatorResult _result;
+        Story _story;
+
+        public ValidVideoStoryApplicationReceived() {
+            var storyCreator = new StoryCreator();
+            var application = new StoryApplication("Stick", "Whats brown and sticky? A stick", StoryType.Video, null, "http://www.google.co.uk", 0, 14);
+            _result = storyCreator.CreateOrEditStory(application);
+            _story = _result.NewStory;
+        }
+
+        [Fact(DisplayName = "Story is validated")]
+        public void StoryValidated() {
+            Assert.True(_result.StoryApplication.IsValid());
+        }
+        [Fact(DisplayName = "Story is accepted")]
+        public void StoryAccepted() {
+            Assert.True(_result.StoryApplication.IsAccepted());
+        }
+        [Fact(DisplayName = "Story is added to the system")]
+        public void StoryAddedToSystem() {
+            Assert.NotNull(_result);
+        }
+        [Fact(DisplayName = "A StoryType of Video")]
+        public void StoryTypeJoke() {
+            Assert.Equal(StoryType.Video, _story.StoryType);
+        }
+        [Fact(DisplayName = "A confirmation message is shown to the administrator")]
+        public void ConfirmationMessage() {
+            Assert.Equal("Successfully created a new story!", _result.StoryApplication.Message);
+        }
+    }
 }
