@@ -43,5 +43,10 @@ namespace Web.Controllers {
             ViewBag.Message = "Your application description page.";
             return View();
         }
+
+        public ActionResult Test() {
+            return View();
+        }
+
     }
 }
