@@ -22,11 +22,11 @@ namespace Web.Controllers {
             return View(stories);
         }
 
-        private void DisplayMessageToUserIfRequired(string message){
+        private void DisplayMessageToUserIfRequired(string message) {
             // Is there a message, and what type to display to user ie green or red
-            if (message.Contains("Thank you for voting!") && message != ""){
+            if (message.Contains("Thank you for voting!") && message != "") {
                 ViewBag.GreenMessage = true;
-            } else{
+            } else {
                 ViewBag.RedMessage = true;
             }
             ViewBag.Message = message;

@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using Core.Models;
+﻿using Core.Models;
+using System.Data.Entity;
 
 namespace Core.DB {
     public class Session : DbContext {

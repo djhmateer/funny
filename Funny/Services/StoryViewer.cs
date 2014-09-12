@@ -5,16 +5,16 @@ using System.Linq;
 
 namespace Core.Services {
     public class StoryViewer {
-        public List<Story> ShowAllStoriesHighestRatingFirst(){
+        public List<Story> ShowAllStoriesHighestRatingFirst() {
             List<Story> result;
-            using (var session = new Session()){
+            using (var session = new Session()) {
                 result = session.Stories
                     .OrderByDescending(s => s.Rating)
                     .ToList();
             }
             return result;
         }
-        public List<Story> ShowAllStoriesByDateCreatedDescending(){
+        public List<Story> ShowAllStoriesByDateCreatedDescending() {
             List<Story> result;
             using (var session = new Session()) {
                 result = session.Stories

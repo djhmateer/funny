@@ -1,8 +1,8 @@
-﻿using System.Data.Entity;
+﻿using Core.DB;
+using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Core.DB;
 
 namespace Web {
     public class MvcApplication : System.Web.HttpApplication {
